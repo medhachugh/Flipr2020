@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<title>Juxtapose</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="stylesheets/style1.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="javascripts/board1.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<style>
+body{ 
+  background: url(images/bg6.jpeg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif;
+}
+
+.w3-row-padding img {margin-bottom: 12px}
+/* Set the width of the sidebar to 120px */
+.w3-sidebar {width: 120px;background: black;}
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+#main {margin-left: 120px}
+.main {margin-left: 120px}
+.main1{margin-left : 440px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+</style>
+<body>  
+    <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center w3-light-grey">
+        <img src="images/g4.jpg" style="width:100%" >
+        <a href="/dashboard" class="w3-bar-item w3-button w3-padding-large w3-hover-grey">
+          <i class="fa fa-user w3-xxlarge"></i>
+          <p>HOME</p>
+        </a>
+        <a href="/board" class="w3-bar-item w3-button w3-padding-large w3-grey">
+          <i class="fa fa-bars w3-xxlarge"></i>
+          <p>PERSONAL BOARD</p>
+        </a>
+        <a href="/teamboard" class="w3-bar-item w3-button w3-padding-large w3-hover-grey">
+          <i class="fa fa-bars w3-xxlarge"></i>
+          <p>TEAM BOARD</p>
+        </a>
+        <a href="/team" class="w3-bar-item w3-button w3-padding-large w3-hover-grey">
+          <i class="fa fa-group w3-xxlarge"></i>
+          <p>TEAMS</p>
+        </a>
+        <a href="/logout" class="w3-bar-item w3-button w3-padding-large w3-hover-grey">
+          <i class="fa fa-group w3-xxlarge"></i>
+          <p>LOG OUT</p>
+        </a>
+      </nav>
+      <header class="w3-padding-0 w3-center w3-black" id="home">
+        <h1 class="w3-jumbo"><span class="w3-hide-small">It's time to </span>JUXTAPOSE!!</h1>
+      </header>
+      <div class="w3-center main">
+      <form id="addlistform"><input type="text" name="list_name" id="name" placeholder="Add name of list" required>&nbsp;&nbsp;&nbsp;<button class="add_button" value="submit"><b>Add List</b></button></form>
+      </div><br>
+      <br>
+     <div class="w3-center w3-black main" id="todolist">
+        <h1><%=list_message%></h1>
+      </div><br>
+      <div class="w3-center">
+     <select id="displaycard">
+     <% list.forEach((item)=>{%>
+      <option value='<%=item%>'><%=item%></option>
+      <%});%>
+     </select>
+     <button id="display" value="submit"><b>Display Cards</b></button>&nbsp;&nbsp;
+     <div><br>
+      <input type="text" name="card_name" id="card_name" placeholder="Add card name" required>&nbsp;&nbsp;<button class="newcard" id="newcardform" value="submit"><b>Create New Card</b></button> 
+    </div>
+  </div><br><br>
+    <div id= "table" class="main1 w3-center col-sm-5">
+    </div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add details to card</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  <form  id="cardform" class="modal-body w3-center">
+    <label for="list_name"><b>List Name</b></label><input type="text" name="list_name" id="list_name" placeholder="Enter list name" required>
+    <br>
+    <label for="name"><b>Card Name</b></label><input type="text" name="name" id="name" placeholder="Enter card name" required>
+    <br>
+    <label for="description"><b>Description</b></label><input type="text" name="description" id="description" placeholder="Enter card description"  width="200" height="100">
+    <br>
+    <label for="due_date"><b>Due Date</b></label><input type="date" name="due_date" id="due_date">
+    <br>
+    <label for="attachment"><b>Attachment</b></label><input type="file" name="attachment" id="attachment">
+    <div class="modal-footer">
+    <button value="submit" class="btn btn-danger" id="cardform1"><b>Save Card</b></button>
+  </form>
+    <button type="button" class="btn btn-danger" data-dismiss="modal"><b>Close</b></button>
+  </div>
+  </div>
+</div>
+</div> 
+<div class="modal" id="myModal1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <form id="removecardform">
+        <h4 class="modal-title">Remove Card</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p><b>Are you sure you want to remove the card?</b></p>
+     </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="removecard">Yes</button>
+      </form>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <!-- Footer -->
+      <footer class="w3-content w3-padding-64 w3-text-black w3-xlarge">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+      <!-- End footer -->
+      </footer>
+    </body>
+    </html>      
